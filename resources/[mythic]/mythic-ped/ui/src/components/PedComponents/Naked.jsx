@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 		left: 8,
 		width: 'fit-content',
 		margin: 'auto',
+		userSelect: 'none'
 	},
 }));
 

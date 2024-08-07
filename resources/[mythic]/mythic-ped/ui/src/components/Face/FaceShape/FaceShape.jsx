@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		width: 'fit-content',
 		margin: 'auto',
 		padding: 15,
+		userSelect: 'none',
 	},
 	body: {
 		maxHeight: '100%',
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 		'&.advanced': {
 			gridTemplateColumns: '50% 50%',
 		},
+		userSelect: 'none',
 	},
 }));
 

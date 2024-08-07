@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Tab, Tabs, ButtonGroup, Button } from '@mui/material';
+import { Tab, Tabs, ButtonGroup, Button, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
 	save: {
 		position: 'absolute',
 		bottom: '1%',
-		right: '1%',
+		left: '50%',
+		transform: 'translateX(-50%)',
 		transition: 'filter ease-in 0.15s',
 		'& svg': {
 			marginLeft: 6,
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		width: '100vw',
 	},
 	btnBar: {
+		display: 'none !important', // not needed for tattoos
 		background: theme.palette.secondary.dark,
 		width: 'fit-content',
 		height: '100vh',
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	panel: {
 		width: 500,
 		position: 'absolute',
-		left: 90,
+		left: 0,
 		top: 48,
 		height: 'calc(100vh - 48px)',
 	},
@@ -94,20 +96,28 @@ export default (props) => {
 					indicatorColor="primary"
 					textColor="primary"
 				>
+					<Tooltip title = "Full Camera">
+						<Tab
+							label={
+								<FontAwesomeIcon icon={['fas', 'face-grimace']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Face Cam">
+						<Tab
+							label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
+						/>
+					</Tooltip>
+					<Tooltip title = "Torso Cam">
 					<Tab
 						label={
-							<FontAwesomeIcon icon={['fas', 'face-grimace']} />
-						}
-					/>
-					<Tab
-						label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
-					/>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'child-reaching']} />
-						}
-					/>
-					<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+								<FontAwesomeIcon icon={['fas', 'child-reaching']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Leg Cam">
+						<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+					</Tooltip>
 				</Tabs>
 			</div>
 			<div className={classes.btnBar}>

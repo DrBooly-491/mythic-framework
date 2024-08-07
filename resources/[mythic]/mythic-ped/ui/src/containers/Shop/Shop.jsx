@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Tab, Tabs, ButtonGroup, Button } from '@mui/material';
+import { Tab, Tabs, ButtonGroup, Button, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
 	save: {
 		position: 'absolute',
 		bottom: '1%',
-		right: '1%',
+		left: '50%',
+		transform: 'translateX(-50%)',
 		'& svg': {
 			marginLeft: 6,
 		},
@@ -92,20 +93,28 @@ export default (props) => {
 					indicatorColor="primary"
 					textColor="primary"
 				>
+					<Tooltip title = "Full Camera">
+						<Tab
+							label={
+								<FontAwesomeIcon icon={['fas', 'face-grimace']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Face Cam">
+						<Tab
+							label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
+						/>
+					</Tooltip>
+					<Tooltip title = "Torso Cam">
 					<Tab
 						label={
-							<FontAwesomeIcon icon={['fas', 'face-grimace']} />
-						}
-					/>
-					<Tab
-						label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
-					/>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'child-reaching']} />
-						}
-					/>
-					<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+								<FontAwesomeIcon icon={['fas', 'child-reaching']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Leg Cam">
+						<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+					</Tooltip>
 				</Tabs>
 			</div>
 			<div className={classes.btnBar}>
@@ -117,14 +126,16 @@ export default (props) => {
 					indicatorColor="primary"
 					textColor="primary"
 					variant="scrollable"
-				>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'child-reaching']} />
-						}
-					/>
-					<Tab label={<FontAwesomeIcon icon={['fas', 'shirt']} />} />
-					<Tab label={<FontAwesomeIcon icon={['fas', 'mitten']} />} />
+				>					
+					<Tooltip title="Clothing" placement='right-start'>
+						<Tab label={ <FontAwesomeIcon icon={['fas', 'shirt']} /> } />
+					</Tooltip>
+					<Tooltip title="Accessories" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'mitten']} />} />
+					</Tooltip>
+					<Tooltip title="Arms" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'child-reaching']} />} />
+					</Tooltip>
 				</Tabs>
 			</div>
 			<div className={classes.panel}>
@@ -165,7 +176,7 @@ export default (props) => {
 				</p>
 			</Dialog>
 			<Dialog
-				title="Save Haircut?"
+				title="Save Outfit?"
 				open={saving}
 				onAccept={onSave}
 				onDecline={() => setSaving(false)}

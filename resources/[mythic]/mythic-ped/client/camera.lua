@@ -1,3 +1,4 @@
+local isSpotlightActive = false
 Camera = {}
 
 Camera.entity = nil
@@ -49,6 +50,7 @@ Camera.Deactivate = function()
 	FreezePedCameraRotation(playerPed, false)
 	FreezeEntityPosition(playerPed, false)
 	Camera.active = false
+	isSpotlightActive = false
 end
 
 Camera.SetView = function(view)
@@ -208,4 +210,66 @@ CreateThread(function()
 
 		Wait(0)
 	end
+end)
+
+Camera.Drag = function(deltaX, deltaY)
+    Camera.angleX = Camera.angleX - deltaX * 0.1
+    Camera.angleY = Camera.angleY + deltaY * 0.1
+
+    if Camera.angleY > Camera.angleYMax then
+        Camera.angleY = Camera.angleYMax
+    elseif Camera.angleY < Camera.angleYMin then
+        Camera.angleY = Camera.angleYMin
+    end
+
+    Camera.updateZoom = true
+end
+
+Camera.Zoom = function(zoomDelta)
+    Camera.radius = Camera.radius + zoomDelta
+	
+    if Camera.radius < Camera.radiusMin then
+        Camera.radius = Camera.radiusMin
+    elseif Camera.radius > Camera.radiusMax then
+        Camera.radius = Camera.radiusMax
+    end
+    Camera.updateZoom = true
+end
+
+RegisterNUICallback('DragCamera', function(dragData, cb)
+	local deltaX = dragData.deltaX
+	local deltaY = dragData.deltaY
+	
+    Camera.Drag(deltaX, deltaY)
+	cb("ok")
+end)
+
+RegisterNUICallback('ZoomCamera', function(zoomDelta, cb)
+    Camera.Zoom(zoomDelta)
+	cb("ok")
+end)
+
+local function getSpotlight()
+    while isSpotlightActive do
+        local coords = GetEntityCoords(PlayerPedId())
+        local forward = GetEntityForwardVector(PlayerPedId())
+        DrawSpotLight(coords.x + forward.x, coords.y + forward.y, coords.z + 3.0, 0.0, 90.0, -180.0, 255, 255, 255, 5.0, 1.0, 1.0, 100.0, 1.0)
+        Wait(0)
+    end
+end
+
+local function toggleSpotlight()
+    if not isSpotlightActive then
+        isSpotlightActive = true
+        CreateThread(getSpotlight)
+        return
+    else
+        isSpotlightActive = false
+        return
+    end
+end
+
+RegisterNUICallback('ToggleSpotlight', function(data, cb)
+    cb("ok")
+	toggleSpotlight()
 end)

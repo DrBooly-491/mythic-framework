@@ -56,9 +56,22 @@ export default connect()((props) => {
 		}
 	}, [state]);
 
+    const backgroundImage = process.env.NODE_ENV !== 'production'
+        ? 'url(https://cdn.discordapp.com/attachments/829372825419776031/1166962060911976508/image.png?ex=66b44e9c&is=66b2fd1c&hm=10916a8164421845c97e2721063fc15bb07d4500c382ba01b6638bf81a5a3136&)'
+        : 'none';
+  
+    const appStyle = {
+        backgroundImage,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        width: '100%',
+		zIndex: '-999 !important'
+    };
+
 	return (
 		<Fade in={!hidden}>
-			<div className="App">
+			<div className="App" style={appStyle}>
 				{loading ? <Loader /> : display}
 				<Tip />
 			</div>

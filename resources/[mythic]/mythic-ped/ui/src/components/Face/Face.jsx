@@ -24,7 +24,7 @@ export default connect()(() => {
 			<AppBar
 				position="static"
 				color="secondary"
-				style={{ paddingBottom: 15 }}
+				style={{ marginBottom: 15 }}
 			>
 				<Tabs
 					value={value}

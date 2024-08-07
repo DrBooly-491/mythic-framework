@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 			borderBottom: `46px solid ${theme.palette.primary.dark}`,
 			borderRight: '21px solid transparent',
 		},
+		userSelect: 'none',
 	},
 }));
 

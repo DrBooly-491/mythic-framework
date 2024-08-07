@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Tab, Tabs, IconButton, Button } from '@mui/material';
+import { Tab, Tabs, IconButton, Button, Tooltip,  } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 	save: {
 		position: 'absolute',
 		bottom: '1%',
-		right: '1%',
+		left: '50%',
+		transform: 'translateX(-50%)',
 		transition: 'filter ease-in 0.15s',
 		'& svg': {
 			marginLeft: 6,
@@ -93,20 +94,28 @@ export default (props) => {
 					indicatorColor="primary"
 					textColor="primary"
 				>
+					<Tooltip title = "Full Camera">
+						<Tab
+							label={
+								<FontAwesomeIcon icon={['fas', 'face-grimace']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Face Cam">
+						<Tab
+							label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
+						/>
+					</Tooltip>
+					<Tooltip title = "Torso Cam">
 					<Tab
 						label={
-							<FontAwesomeIcon icon={['fas', 'face-grimace']} />
-						}
-					/>
-					<Tab
-						label={<FontAwesomeIcon icon={['fas', 'head-side-mask']} />}
-					/>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'child-reaching']} />
-						}
-					/>
-					<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+								<FontAwesomeIcon icon={['fas', 'child-reaching']} />
+							}
+						/>
+					</Tooltip>
+					<Tooltip title = "Leg Cam">
+						<Tab label={<FontAwesomeIcon icon={['fas', 'person']} />} />
+					</Tooltip>
 				</Tabs>
 			</div>
 			<div className={classes.btnBar}>
@@ -119,25 +128,27 @@ export default (props) => {
 					textColor="primary"
 					variant="scrollable"
 				>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'face-grimace']} />
-						}
-					/>
-					<Tab
-						label={
-							<FontAwesomeIcon icon={['fas', 'child-reaching']} />
-						}
-					/>
-					<Tab
-						label={<FontAwesomeIcon icon={['fas', 'scissors']} />}
-					/>
-					<Tab
-						label={<FontAwesomeIcon icon={['fas', 'teeth-open']} />}
-					/>
-					<Tab label={<FontAwesomeIcon icon={['fas', 'shirt']} />} />
-					<Tab label={<FontAwesomeIcon icon={['fas', 'mitten']} />} />
-					<Tab label={<FontAwesomeIcon icon={['fas', 'atom']} />} />
+					<Tooltip title="Face" placement='right-start'>
+						<Tab label={ <FontAwesomeIcon icon={['fas', 'face-grimace']} /> } />
+					</Tooltip>
+					<Tooltip title="Arms/Skin/Ped" placement='right-start'>
+						<Tab label={ <FontAwesomeIcon icon={['fas', 'child-reaching']} /> } />
+					</Tooltip>
+					<Tooltip title="Hair Styles" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'scissors']} />} />
+					</Tooltip>
+					<Tooltip title="Makeup" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'teeth-open']} />} />
+					</Tooltip>
+					<Tooltip title="Clothing" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'shirt']} />} />
+					</Tooltip>
+					<Tooltip title="Accessories" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'mitten']} />} />
+					</Tooltip>
+					<Tooltip title = "Tattoo's" placement='right-start'>
+						<Tab label={<FontAwesomeIcon icon={['fas', 'atom']} />} />
+					</Tooltip>
 				</Tabs>
 			</div>
 			<div className={classes.panel}>

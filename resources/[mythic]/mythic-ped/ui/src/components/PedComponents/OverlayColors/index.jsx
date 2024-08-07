@@ -9,15 +9,16 @@ import ElementBox from '../../UIComponents/ElementBox/ElementBox';
 
 const useStyles = makeStyles((theme) => ({
 	body: {
-		maxHeight: '100%',
+        maxHeight: '100%',
         overflow: 'hidden',
-		margin: 25,
-		display: 'grid',
-		gridGap: 0,
-		gridTemplateColumns: '49% 49%',
-		justifyContent: 'space-around',
-		background: theme.palette.secondary.light,
-		border: `2px solid ${theme.palette.border.divider}`,
+        margin: 25,
+        display: 'grid',
+        gridGap: 0,
+        gridTemplateColumns: '49% 49%',
+        justifyContent: 'space-around',
+        background: theme.palette.secondary.light,
+        border: `2px solid ${theme.palette.border.divider}`,
+        userSelect: 'none',
 	},
 }));
 

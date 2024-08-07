@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'space-around',
 		background: theme.palette.secondary.light,
 		border: `2px solid ${theme.palette.border.divider}`,
+		userSelect: 'none',
 	},
 }));
 

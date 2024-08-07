@@ -7,13 +7,14 @@ const useStyles = makeStyles((theme) => ({
 		height: 'fit-content',
 		width: 'fit-content',
 		background: theme.palette.secondary.dark,
-		position: 'absolute',
-		top: 48,
+		position: 'fixed',
+		bottom: 0,
 		right: 0,
-		padding: 10,
+		padding: 5,
 		fontSize: 22,
-		border: `1px solid ${theme.palette.border.divider}`,
-		borderRight: 'none',
+		// border: `1px solid ${theme.palette.border.divider}`,
+		// borderTop: 'none',
+		borderRadius: '.75rem 0 0 0'
 	},
 	text: {
 		color: theme.palette.text.main,
@@ -22,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
 		letterSpacing: 1,
 		textTransform: 'uppercase',
 		whiteSpace: 'nowrap',
-		textAlign: 'left',
+		display: 'flex',
+		flexDirection: 'row',
+		gap: '10px',
+		userSelect: 'none'
 	},
 	key: {
 		color: theme.palette.primary.main,
@@ -46,6 +50,9 @@ export default (props) => {
 				</div>
 				<div>
 					<span className={classes.key}>R</span>: Animation
+				</div>
+				<div>
+					<span className={classes.key}>G</span>: Spotlight
 				</div>
 			</div>
 		</div>
